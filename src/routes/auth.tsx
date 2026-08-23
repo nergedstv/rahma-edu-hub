@@ -8,7 +8,6 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useAuth } from "@/hooks/use-auth";
 import { supabase } from "@/integrations/supabase/client";
-import { lovable } from "@/integrations/lovable";
 import { logoUrl, portalPhotos } from "@/lib/assets";
 import { useI18n } from "@/lib/i18n";
 import { school } from "@/lib/school";
@@ -81,14 +80,6 @@ function AuthPage() {
       toast.error(err instanceof Error ? err.message : "Something went wrong");
     } finally {
       setBusy(false);
-    }
-  }
-
-  async function onGoogle() {
-    try {
-      await lovable.auth.signInWithOAuth("google", { redirect_uri: window.location.origin });
-    } catch (err) {
-      toast.error(err instanceof Error ? err.message : "Google sign-in failed");
     }
   }
 
@@ -185,14 +176,6 @@ function AuthPage() {
               {mode === "signin" ? t("signIn") : t("signUp")}
             </Button>
           </form>
-
-          <div className="my-6 flex items-center gap-3 text-xs uppercase tracking-brand text-muted-foreground">
-            <span className="h-px flex-1 bg-border" /> or <span className="h-px flex-1 bg-border" />
-          </div>
-
-          <Button variant="outline" className="w-full" onClick={onGoogle}>
-            Continue with Google
-          </Button>
 
           <p className="mt-8 text-center text-xs text-muted-foreground">
             <Link to="/" className="hover:text-primary">
