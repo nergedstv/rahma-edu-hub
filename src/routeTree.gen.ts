@@ -19,6 +19,7 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedPortalClassesRouteImport } from './routes/_authenticated/portal.classes'
+import { Route as AuthenticatedPortalPeopleRouteImport } from './routes/_authenticated/portal.people'
 import { Route as AuthenticatedPortalStudentsRouteImport } from './routes/_authenticated/portal.students'
 
 const IndexRoute = IndexRouteImport.update({
@@ -71,6 +72,12 @@ const AuthenticatedPortalClassesRoute =
     path: '/portal/classes',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedPortalPeopleRoute =
+  AuthenticatedPortalPeopleRouteImport.update({
+    id: '/portal/people',
+    path: '/portal/people',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedPortalStudentsRoute =
   AuthenticatedPortalStudentsRouteImport.update({
     id: '/portal/students',
@@ -88,6 +95,7 @@ export interface FileRoutesByFullPath {
   '/gallery': typeof GalleryRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/portal/classes': typeof AuthenticatedPortalClassesRoute
+  '/portal/people': typeof AuthenticatedPortalPeopleRoute
   '/portal/students': typeof AuthenticatedPortalStudentsRoute
 }
 export interface FileRoutesByTo {
@@ -100,6 +108,7 @@ export interface FileRoutesByTo {
   '/gallery': typeof GalleryRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/portal/classes': typeof AuthenticatedPortalClassesRoute
+  '/portal/people': typeof AuthenticatedPortalPeopleRoute
   '/portal/students': typeof AuthenticatedPortalStudentsRoute
 }
 export interface FileRoutesById {
@@ -114,6 +123,7 @@ export interface FileRoutesById {
   '/gallery': typeof GalleryRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/portal/classes': typeof AuthenticatedPortalClassesRoute
+  '/_authenticated/portal/people': typeof AuthenticatedPortalPeopleRoute
   '/_authenticated/portal/students': typeof AuthenticatedPortalStudentsRoute
 }
 export interface FileRouteTypes {
@@ -128,6 +138,7 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/dashboard'
     | '/portal/classes'
+    | '/portal/people'
     | '/portal/students'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -140,6 +151,7 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/dashboard'
     | '/portal/classes'
+    | '/portal/people'
     | '/portal/students'
   id:
     | '__root__'
@@ -153,6 +165,7 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/_authenticated/dashboard'
     | '/_authenticated/portal/classes'
+    | '/_authenticated/portal/people'
     | '/_authenticated/portal/students'
   fileRoutesById: FileRoutesById
 }
@@ -239,6 +252,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedPortalClassesRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/portal/people': {
+      id: '/_authenticated/portal/people'
+      path: '/portal/people'
+      fullPath: '/portal/people'
+      preLoaderRoute: typeof AuthenticatedPortalPeopleRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/portal/students': {
       id: '/_authenticated/portal/students'
       path: '/portal/students'
@@ -252,12 +272,14 @@ declare module '@tanstack/react-router' {
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedPortalClassesRoute: typeof AuthenticatedPortalClassesRoute
+  AuthenticatedPortalPeopleRoute: typeof AuthenticatedPortalPeopleRoute
   AuthenticatedPortalStudentsRoute: typeof AuthenticatedPortalStudentsRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedPortalClassesRoute: AuthenticatedPortalClassesRoute,
+  AuthenticatedPortalPeopleRoute: AuthenticatedPortalPeopleRoute,
   AuthenticatedPortalStudentsRoute: AuthenticatedPortalStudentsRoute,
 }
 
