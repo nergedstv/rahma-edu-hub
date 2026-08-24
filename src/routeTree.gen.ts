@@ -18,6 +18,7 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedPortalAttendanceRouteImport } from './routes/_authenticated/portal.attendance'
 import { Route as AuthenticatedPortalClassesRouteImport } from './routes/_authenticated/portal.classes'
 import { Route as AuthenticatedPortalPeopleRouteImport } from './routes/_authenticated/portal.people'
 import { Route as AuthenticatedPortalStudentsRouteImport } from './routes/_authenticated/portal.students'
@@ -66,6 +67,12 @@ const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedPortalAttendanceRoute =
+  AuthenticatedPortalAttendanceRouteImport.update({
+    id: '/portal/attendance',
+    path: '/portal/attendance',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedPortalClassesRoute =
   AuthenticatedPortalClassesRouteImport.update({
     id: '/portal/classes',
@@ -94,6 +101,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/gallery': typeof GalleryRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/portal/attendance': typeof AuthenticatedPortalAttendanceRoute
   '/portal/classes': typeof AuthenticatedPortalClassesRoute
   '/portal/people': typeof AuthenticatedPortalPeopleRoute
   '/portal/students': typeof AuthenticatedPortalStudentsRoute
@@ -107,6 +115,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/gallery': typeof GalleryRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/portal/attendance': typeof AuthenticatedPortalAttendanceRoute
   '/portal/classes': typeof AuthenticatedPortalClassesRoute
   '/portal/people': typeof AuthenticatedPortalPeopleRoute
   '/portal/students': typeof AuthenticatedPortalStudentsRoute
@@ -122,6 +131,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/gallery': typeof GalleryRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/portal/attendance': typeof AuthenticatedPortalAttendanceRoute
   '/_authenticated/portal/classes': typeof AuthenticatedPortalClassesRoute
   '/_authenticated/portal/people': typeof AuthenticatedPortalPeopleRoute
   '/_authenticated/portal/students': typeof AuthenticatedPortalStudentsRoute
@@ -137,6 +147,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/gallery'
     | '/dashboard'
+    | '/portal/attendance'
     | '/portal/classes'
     | '/portal/people'
     | '/portal/students'
@@ -150,6 +161,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/gallery'
     | '/dashboard'
+    | '/portal/attendance'
     | '/portal/classes'
     | '/portal/people'
     | '/portal/students'
@@ -164,6 +176,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/gallery'
     | '/_authenticated/dashboard'
+    | '/_authenticated/portal/attendance'
     | '/_authenticated/portal/classes'
     | '/_authenticated/portal/people'
     | '/_authenticated/portal/students'
@@ -245,6 +258,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/portal/attendance': {
+      id: '/_authenticated/portal/attendance'
+      path: '/portal/attendance'
+      fullPath: '/portal/attendance'
+      preLoaderRoute: typeof AuthenticatedPortalAttendanceRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/portal/classes': {
       id: '/_authenticated/portal/classes'
       path: '/portal/classes'
@@ -271,6 +291,7 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedPortalAttendanceRoute: typeof AuthenticatedPortalAttendanceRoute
   AuthenticatedPortalClassesRoute: typeof AuthenticatedPortalClassesRoute
   AuthenticatedPortalPeopleRoute: typeof AuthenticatedPortalPeopleRoute
   AuthenticatedPortalStudentsRoute: typeof AuthenticatedPortalStudentsRoute
@@ -278,6 +299,7 @@ interface AuthenticatedRouteRouteChildren {
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedPortalAttendanceRoute: AuthenticatedPortalAttendanceRoute,
   AuthenticatedPortalClassesRoute: AuthenticatedPortalClassesRoute,
   AuthenticatedPortalPeopleRoute: AuthenticatedPortalPeopleRoute,
   AuthenticatedPortalStudentsRoute: AuthenticatedPortalStudentsRoute,
