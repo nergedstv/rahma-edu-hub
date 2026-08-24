@@ -22,6 +22,7 @@ import { Route as AuthenticatedPortalAttendanceRouteImport } from './routes/_aut
 import { Route as AuthenticatedPortalClassesRouteImport } from './routes/_authenticated/portal.classes'
 import { Route as AuthenticatedPortalPeopleRouteImport } from './routes/_authenticated/portal.people'
 import { Route as AuthenticatedPortalStudentsRouteImport } from './routes/_authenticated/portal.students'
+import { Route as AuthenticatedPortalTimetableRouteImport } from './routes/_authenticated/portal.timetable'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -91,6 +92,12 @@ const AuthenticatedPortalStudentsRoute =
     path: '/portal/students',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedPortalTimetableRoute =
+  AuthenticatedPortalTimetableRouteImport.update({
+    id: '/portal/timetable',
+    path: '/portal/timetable',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -105,6 +112,7 @@ export interface FileRoutesByFullPath {
   '/portal/classes': typeof AuthenticatedPortalClassesRoute
   '/portal/people': typeof AuthenticatedPortalPeopleRoute
   '/portal/students': typeof AuthenticatedPortalStudentsRoute
+  '/portal/timetable': typeof AuthenticatedPortalTimetableRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -119,6 +127,7 @@ export interface FileRoutesByTo {
   '/portal/classes': typeof AuthenticatedPortalClassesRoute
   '/portal/people': typeof AuthenticatedPortalPeopleRoute
   '/portal/students': typeof AuthenticatedPortalStudentsRoute
+  '/portal/timetable': typeof AuthenticatedPortalTimetableRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -135,6 +144,7 @@ export interface FileRoutesById {
   '/_authenticated/portal/classes': typeof AuthenticatedPortalClassesRoute
   '/_authenticated/portal/people': typeof AuthenticatedPortalPeopleRoute
   '/_authenticated/portal/students': typeof AuthenticatedPortalStudentsRoute
+  '/_authenticated/portal/timetable': typeof AuthenticatedPortalTimetableRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -151,6 +161,7 @@ export interface FileRouteTypes {
     | '/portal/classes'
     | '/portal/people'
     | '/portal/students'
+    | '/portal/timetable'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -165,6 +176,7 @@ export interface FileRouteTypes {
     | '/portal/classes'
     | '/portal/people'
     | '/portal/students'
+    | '/portal/timetable'
   id:
     | '__root__'
     | '/'
@@ -180,6 +192,7 @@ export interface FileRouteTypes {
     | '/_authenticated/portal/classes'
     | '/_authenticated/portal/people'
     | '/_authenticated/portal/students'
+    | '/_authenticated/portal/timetable'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -286,6 +299,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedPortalStudentsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/portal/timetable': {
+      id: '/_authenticated/portal/timetable'
+      path: '/portal/timetable'
+      fullPath: '/portal/timetable'
+      preLoaderRoute: typeof AuthenticatedPortalTimetableRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
@@ -295,6 +315,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedPortalClassesRoute: typeof AuthenticatedPortalClassesRoute
   AuthenticatedPortalPeopleRoute: typeof AuthenticatedPortalPeopleRoute
   AuthenticatedPortalStudentsRoute: typeof AuthenticatedPortalStudentsRoute
+  AuthenticatedPortalTimetableRoute: typeof AuthenticatedPortalTimetableRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
@@ -303,6 +324,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedPortalClassesRoute: AuthenticatedPortalClassesRoute,
   AuthenticatedPortalPeopleRoute: AuthenticatedPortalPeopleRoute,
   AuthenticatedPortalStudentsRoute: AuthenticatedPortalStudentsRoute,
+  AuthenticatedPortalTimetableRoute: AuthenticatedPortalTimetableRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
