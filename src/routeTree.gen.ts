@@ -10,16 +10,27 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AcademicsRouteImport } from './routes/academics'
 import { Route as AdmissionsRouteImport } from './routes/admissions'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as GalleryRouteImport } from './routes/gallery'
+import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedPortalAttendanceRouteImport } from './routes/_authenticated/portal.attendance'
+import { Route as AuthenticatedPortalClassesRouteImport } from './routes/_authenticated/portal.classes'
+import { Route as AuthenticatedPortalPeopleRouteImport } from './routes/_authenticated/portal.people'
+import { Route as AuthenticatedPortalStudentsRouteImport } from './routes/_authenticated/portal.students'
+import { Route as AuthenticatedPortalTimetableRouteImport } from './routes/_authenticated/portal.timetable'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -52,6 +63,41 @@ const GalleryRoute = GalleryRouteImport.update({
   path: '/gallery',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedPortalAttendanceRoute =
+  AuthenticatedPortalAttendanceRouteImport.update({
+    id: '/portal/attendance',
+    path: '/portal/attendance',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedPortalClassesRoute =
+  AuthenticatedPortalClassesRouteImport.update({
+    id: '/portal/classes',
+    path: '/portal/classes',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedPortalPeopleRoute =
+  AuthenticatedPortalPeopleRouteImport.update({
+    id: '/portal/people',
+    path: '/portal/people',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedPortalStudentsRoute =
+  AuthenticatedPortalStudentsRouteImport.update({
+    id: '/portal/students',
+    path: '/portal/students',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedPortalTimetableRoute =
+  AuthenticatedPortalTimetableRouteImport.update({
+    id: '/portal/timetable',
+    path: '/portal/timetable',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -61,6 +107,12 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
   '/gallery': typeof GalleryRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/portal/attendance': typeof AuthenticatedPortalAttendanceRoute
+  '/portal/classes': typeof AuthenticatedPortalClassesRoute
+  '/portal/people': typeof AuthenticatedPortalPeopleRoute
+  '/portal/students': typeof AuthenticatedPortalStudentsRoute
+  '/portal/timetable': typeof AuthenticatedPortalTimetableRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -70,16 +122,29 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
   '/gallery': typeof GalleryRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/portal/attendance': typeof AuthenticatedPortalAttendanceRoute
+  '/portal/classes': typeof AuthenticatedPortalClassesRoute
+  '/portal/people': typeof AuthenticatedPortalPeopleRoute
+  '/portal/students': typeof AuthenticatedPortalStudentsRoute
+  '/portal/timetable': typeof AuthenticatedPortalTimetableRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/about': typeof AboutRoute
   '/academics': typeof AcademicsRoute
   '/admissions': typeof AdmissionsRoute
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
   '/gallery': typeof GalleryRoute
+  '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/portal/attendance': typeof AuthenticatedPortalAttendanceRoute
+  '/_authenticated/portal/classes': typeof AuthenticatedPortalClassesRoute
+  '/_authenticated/portal/people': typeof AuthenticatedPortalPeopleRoute
+  '/_authenticated/portal/students': typeof AuthenticatedPortalStudentsRoute
+  '/_authenticated/portal/timetable': typeof AuthenticatedPortalTimetableRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -91,6 +156,12 @@ export interface FileRouteTypes {
     | '/auth'
     | '/contact'
     | '/gallery'
+    | '/dashboard'
+    | '/portal/attendance'
+    | '/portal/classes'
+    | '/portal/people'
+    | '/portal/students'
+    | '/portal/timetable'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -100,19 +171,33 @@ export interface FileRouteTypes {
     | '/auth'
     | '/contact'
     | '/gallery'
+    | '/dashboard'
+    | '/portal/attendance'
+    | '/portal/classes'
+    | '/portal/people'
+    | '/portal/students'
+    | '/portal/timetable'
   id:
     | '__root__'
     | '/'
+    | '/_authenticated'
     | '/about'
     | '/academics'
     | '/admissions'
     | '/auth'
     | '/contact'
     | '/gallery'
+    | '/_authenticated/dashboard'
+    | '/_authenticated/portal/attendance'
+    | '/_authenticated/portal/classes'
+    | '/_authenticated/portal/people'
+    | '/_authenticated/portal/students'
+    | '/_authenticated/portal/timetable'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AboutRoute: typeof AboutRoute
   AcademicsRoute: typeof AcademicsRoute
   AdmissionsRoute: typeof AdmissionsRoute
@@ -128,6 +213,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -172,11 +264,75 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GalleryRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/dashboard': {
+      id: '/_authenticated/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AuthenticatedDashboardRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/portal/attendance': {
+      id: '/_authenticated/portal/attendance'
+      path: '/portal/attendance'
+      fullPath: '/portal/attendance'
+      preLoaderRoute: typeof AuthenticatedPortalAttendanceRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/portal/classes': {
+      id: '/_authenticated/portal/classes'
+      path: '/portal/classes'
+      fullPath: '/portal/classes'
+      preLoaderRoute: typeof AuthenticatedPortalClassesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/portal/people': {
+      id: '/_authenticated/portal/people'
+      path: '/portal/people'
+      fullPath: '/portal/people'
+      preLoaderRoute: typeof AuthenticatedPortalPeopleRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/portal/students': {
+      id: '/_authenticated/portal/students'
+      path: '/portal/students'
+      fullPath: '/portal/students'
+      preLoaderRoute: typeof AuthenticatedPortalStudentsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/portal/timetable': {
+      id: '/_authenticated/portal/timetable'
+      path: '/portal/timetable'
+      fullPath: '/portal/timetable'
+      preLoaderRoute: typeof AuthenticatedPortalTimetableRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedPortalAttendanceRoute: typeof AuthenticatedPortalAttendanceRoute
+  AuthenticatedPortalClassesRoute: typeof AuthenticatedPortalClassesRoute
+  AuthenticatedPortalPeopleRoute: typeof AuthenticatedPortalPeopleRoute
+  AuthenticatedPortalStudentsRoute: typeof AuthenticatedPortalStudentsRoute
+  AuthenticatedPortalTimetableRoute: typeof AuthenticatedPortalTimetableRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedPortalAttendanceRoute: AuthenticatedPortalAttendanceRoute,
+  AuthenticatedPortalClassesRoute: AuthenticatedPortalClassesRoute,
+  AuthenticatedPortalPeopleRoute: AuthenticatedPortalPeopleRoute,
+  AuthenticatedPortalStudentsRoute: AuthenticatedPortalStudentsRoute,
+  AuthenticatedPortalTimetableRoute: AuthenticatedPortalTimetableRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AboutRoute: AboutRoute,
   AcademicsRoute: AcademicsRoute,
   AdmissionsRoute: AdmissionsRoute,
