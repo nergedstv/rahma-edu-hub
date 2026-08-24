@@ -18,6 +18,7 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedPortalClassesRouteImport } from './routes/_authenticated/portal.classes'
 import { Route as AuthenticatedPortalStudentsRouteImport } from './routes/_authenticated/portal.students'
 
 const IndexRoute = IndexRouteImport.update({
@@ -64,6 +65,12 @@ const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedPortalClassesRoute =
+  AuthenticatedPortalClassesRouteImport.update({
+    id: '/portal/classes',
+    path: '/portal/classes',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedPortalStudentsRoute =
   AuthenticatedPortalStudentsRouteImport.update({
     id: '/portal/students',
@@ -80,6 +87,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/gallery': typeof GalleryRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/portal/classes': typeof AuthenticatedPortalClassesRoute
   '/portal/students': typeof AuthenticatedPortalStudentsRoute
 }
 export interface FileRoutesByTo {
@@ -91,6 +99,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/gallery': typeof GalleryRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/portal/classes': typeof AuthenticatedPortalClassesRoute
   '/portal/students': typeof AuthenticatedPortalStudentsRoute
 }
 export interface FileRoutesById {
@@ -104,6 +113,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/gallery': typeof GalleryRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/portal/classes': typeof AuthenticatedPortalClassesRoute
   '/_authenticated/portal/students': typeof AuthenticatedPortalStudentsRoute
 }
 export interface FileRouteTypes {
@@ -117,6 +127,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/gallery'
     | '/dashboard'
+    | '/portal/classes'
     | '/portal/students'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -128,6 +139,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/gallery'
     | '/dashboard'
+    | '/portal/classes'
     | '/portal/students'
   id:
     | '__root__'
@@ -140,6 +152,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/gallery'
     | '/_authenticated/dashboard'
+    | '/_authenticated/portal/classes'
     | '/_authenticated/portal/students'
   fileRoutesById: FileRoutesById
 }
@@ -219,6 +232,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/portal/classes': {
+      id: '/_authenticated/portal/classes'
+      path: '/portal/classes'
+      fullPath: '/portal/classes'
+      preLoaderRoute: typeof AuthenticatedPortalClassesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/portal/students': {
       id: '/_authenticated/portal/students'
       path: '/portal/students'
@@ -231,11 +251,13 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedPortalClassesRoute: typeof AuthenticatedPortalClassesRoute
   AuthenticatedPortalStudentsRoute: typeof AuthenticatedPortalStudentsRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedPortalClassesRoute: AuthenticatedPortalClassesRoute,
   AuthenticatedPortalStudentsRoute: AuthenticatedPortalStudentsRoute,
 }
 
