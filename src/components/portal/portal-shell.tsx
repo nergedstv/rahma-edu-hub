@@ -21,12 +21,12 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useMe } from "@/hooks/use-auth";
 import { supabase } from "@/integrations/supabase/client";
 import { logoUrl } from "@/lib/assets";
-import { useI18n } from "@/lib/i18n";
+import { useI18n, type TranslationKey } from "@/lib/i18n";
 import { fullName, initials, roleLabels, school } from "@/lib/school";
 
 type Item = {
   to: string;
-  key: string;
+  key: TranslationKey;
   icon: typeof LayoutDashboard;
   show: (p: { isStaff: boolean; isAdmin: boolean; isParent: boolean }) => boolean;
 };
