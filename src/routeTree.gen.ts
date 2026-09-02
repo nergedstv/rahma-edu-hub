@@ -25,6 +25,7 @@ import { Route as AuthenticatedPortalFinanceRouteImport } from './routes/_authen
 import { Route as AuthenticatedPortalMessagesRouteImport } from './routes/_authenticated/portal.messages'
 import { Route as AuthenticatedPortalPeopleRouteImport } from './routes/_authenticated/portal.people'
 import { Route as AuthenticatedPortalProfileRouteImport } from './routes/_authenticated/portal.profile'
+import { Route as AuthenticatedPortalResultsRouteImport } from './routes/_authenticated/portal.results'
 import { Route as AuthenticatedPortalStudentsRouteImport } from './routes/_authenticated/portal.students'
 import { Route as AuthenticatedPortalTimetableRouteImport } from './routes/_authenticated/portal.timetable'
 
@@ -114,6 +115,12 @@ const AuthenticatedPortalProfileRoute =
     path: '/portal/profile',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedPortalResultsRoute =
+  AuthenticatedPortalResultsRouteImport.update({
+    id: '/portal/results',
+    path: '/portal/results',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedPortalStudentsRoute =
   AuthenticatedPortalStudentsRouteImport.update({
     id: '/portal/students',
@@ -143,6 +150,7 @@ export interface FileRoutesByFullPath {
   '/portal/messages': typeof AuthenticatedPortalMessagesRoute
   '/portal/people': typeof AuthenticatedPortalPeopleRoute
   '/portal/profile': typeof AuthenticatedPortalProfileRoute
+  '/portal/results': typeof AuthenticatedPortalResultsRoute
   '/portal/students': typeof AuthenticatedPortalStudentsRoute
   '/portal/timetable': typeof AuthenticatedPortalTimetableRoute
 }
@@ -162,6 +170,7 @@ export interface FileRoutesByTo {
   '/portal/messages': typeof AuthenticatedPortalMessagesRoute
   '/portal/people': typeof AuthenticatedPortalPeopleRoute
   '/portal/profile': typeof AuthenticatedPortalProfileRoute
+  '/portal/results': typeof AuthenticatedPortalResultsRoute
   '/portal/students': typeof AuthenticatedPortalStudentsRoute
   '/portal/timetable': typeof AuthenticatedPortalTimetableRoute
 }
@@ -183,6 +192,7 @@ export interface FileRoutesById {
   '/_authenticated/portal/messages': typeof AuthenticatedPortalMessagesRoute
   '/_authenticated/portal/people': typeof AuthenticatedPortalPeopleRoute
   '/_authenticated/portal/profile': typeof AuthenticatedPortalProfileRoute
+  '/_authenticated/portal/results': typeof AuthenticatedPortalResultsRoute
   '/_authenticated/portal/students': typeof AuthenticatedPortalStudentsRoute
   '/_authenticated/portal/timetable': typeof AuthenticatedPortalTimetableRoute
 }
@@ -204,6 +214,7 @@ export interface FileRouteTypes {
     | '/portal/messages'
     | '/portal/people'
     | '/portal/profile'
+    | '/portal/results'
     | '/portal/students'
     | '/portal/timetable'
   fileRoutesByTo: FileRoutesByTo
@@ -223,6 +234,7 @@ export interface FileRouteTypes {
     | '/portal/messages'
     | '/portal/people'
     | '/portal/profile'
+    | '/portal/results'
     | '/portal/students'
     | '/portal/timetable'
   id:
@@ -243,6 +255,7 @@ export interface FileRouteTypes {
     | '/_authenticated/portal/messages'
     | '/_authenticated/portal/people'
     | '/_authenticated/portal/profile'
+    | '/_authenticated/portal/results'
     | '/_authenticated/portal/students'
     | '/_authenticated/portal/timetable'
   fileRoutesById: FileRoutesById
@@ -372,6 +385,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedPortalProfileRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/portal/results': {
+      id: '/_authenticated/portal/results'
+      path: '/portal/results'
+      fullPath: '/portal/results'
+      preLoaderRoute: typeof AuthenticatedPortalResultsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/portal/students': {
       id: '/_authenticated/portal/students'
       path: '/portal/students'
@@ -398,6 +418,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedPortalMessagesRoute: typeof AuthenticatedPortalMessagesRoute
   AuthenticatedPortalPeopleRoute: typeof AuthenticatedPortalPeopleRoute
   AuthenticatedPortalProfileRoute: typeof AuthenticatedPortalProfileRoute
+  AuthenticatedPortalResultsRoute: typeof AuthenticatedPortalResultsRoute
   AuthenticatedPortalStudentsRoute: typeof AuthenticatedPortalStudentsRoute
   AuthenticatedPortalTimetableRoute: typeof AuthenticatedPortalTimetableRoute
 }
@@ -411,6 +432,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedPortalMessagesRoute: AuthenticatedPortalMessagesRoute,
   AuthenticatedPortalPeopleRoute: AuthenticatedPortalPeopleRoute,
   AuthenticatedPortalProfileRoute: AuthenticatedPortalProfileRoute,
+  AuthenticatedPortalResultsRoute: AuthenticatedPortalResultsRoute,
   AuthenticatedPortalStudentsRoute: AuthenticatedPortalStudentsRoute,
   AuthenticatedPortalTimetableRoute: AuthenticatedPortalTimetableRoute,
 }
