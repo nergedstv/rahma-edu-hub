@@ -62,6 +62,7 @@ function PeoplePage() {
       <PageHeader
         title="Staff & parents"
         description="Everyone with a portal account, and the roles they hold."
+        action={<AddUserDialog />}
       />
 
       <Card>
