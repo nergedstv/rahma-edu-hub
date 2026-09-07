@@ -58,7 +58,12 @@ export function PortalShell({ children }: { children: ReactNode }) {
   const queryClient = useQueryClient();
   const [open, setOpen] = useState(false);
 
-  const perms = { isStaff, isAdmin, isParent: hasRole("parent") };
+  const perms = {
+    isStaff,
+    isAdmin,
+    isParent: hasRole("parent"),
+    isStudent: hasRole("student"),
+  };
   const visible = items.filter((i) => i.show(perms));
   const name = fullName(profile) || "Portal user";
 
