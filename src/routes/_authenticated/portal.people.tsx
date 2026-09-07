@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 
+import { AddUserDialog } from "@/components/portal/add-user-dialog";
 import { EmptyState, PageHeader } from "@/components/portal/page-header";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -62,7 +63,7 @@ function PeoplePage() {
       <PageHeader
         title="Staff & parents"
         description="Everyone with a portal account, and the roles they hold."
-        action={<AddUserDialog />}
+        actions={<AddUserDialog />}
       />
 
       <Card>
