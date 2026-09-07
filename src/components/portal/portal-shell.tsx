@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
 import {
+  Award,
   BookOpen,
   CalendarDays,
   ClipboardCheck,
@@ -28,7 +29,12 @@ type Item = {
   to: string;
   key: TranslationKey;
   icon: typeof LayoutDashboard;
-  show: (p: { isStaff: boolean; isAdmin: boolean; isParent: boolean }) => boolean;
+  show: (p: {
+    isStaff: boolean;
+    isAdmin: boolean;
+    isParent: boolean;
+    isStudent: boolean;
+  }) => boolean;
 };
 
 const items: Item[] = [
@@ -37,8 +43,9 @@ const items: Item[] = [
   { to: "/portal/classes", key: "classes", icon: BookOpen, show: (p) => p.isStaff },
   { to: "/portal/people", key: "people", icon: Users, show: (p) => p.isAdmin },
   { to: "/portal/attendance", key: "attendance", icon: ClipboardCheck, show: (p) => p.isStaff },
+  { to: "/portal/results", key: "results", icon: Award, show: (p) => p.isParent || p.isStudent },
   { to: "/portal/timetable", key: "timetable", icon: CalendarDays, show: () => true },
-  { to: "/portal/finance", key: "finance", icon: Wallet, show: (p) => p.isStaff || p.isParent },
+  { to: "/portal/finance", key: "finance", icon: Wallet, show: () => true },
   { to: "/portal/announcements", key: "announcements", icon: Megaphone, show: () => true },
   { to: "/portal/messages", key: "messages", icon: MessageSquare, show: () => true },
   { to: "/portal/profile", key: "profile", icon: UserRound, show: () => true },
@@ -51,7 +58,12 @@ export function PortalShell({ children }: { children: ReactNode }) {
   const queryClient = useQueryClient();
   const [open, setOpen] = useState(false);
 
-  const perms = { isStaff, isAdmin, isParent: hasRole("parent") };
+  const perms = {
+    isStaff,
+    isAdmin,
+    isParent: hasRole("parent"),
+    isStudent: hasRole("student"),
+  };
   const visible = items.filter((i) => i.show(perms));
   const name = fullName(profile) || "Portal user";
 
