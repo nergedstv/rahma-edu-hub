@@ -29,7 +29,12 @@ type Item = {
   to: string;
   key: TranslationKey;
   icon: typeof LayoutDashboard;
-  show: (p: { isStaff: boolean; isAdmin: boolean; isParent: boolean }) => boolean;
+  show: (p: {
+    isStaff: boolean;
+    isAdmin: boolean;
+    isParent: boolean;
+    isStudent: boolean;
+  }) => boolean;
 };
 
 const items: Item[] = [
