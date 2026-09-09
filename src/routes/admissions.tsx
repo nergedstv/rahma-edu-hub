@@ -41,7 +41,11 @@ const classOptions = [
   "Grade 4",
   "Grade 5",
   "Grade 6",
+  "Grade 7",
+  "Grade 8",
+  "Grade 9",
 ];
+
 
 const steps = [
   { title: "1. Send the form", body: "Share your child's details and the class you are applying for." },

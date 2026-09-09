@@ -25,10 +25,12 @@ export const Route = createFileRoute("/academics")({
 });
 
 const levels = [
-  { name: "Playgroup & PP1–PP2", body: "Play-based literacy, numeracy and social skills." },
+  { name: "Playgroup, PP1–PP2 (Pre-primary)", body: "Play-based literacy, numeracy and social skills." },
   { name: "Grade 1–3 (Lower primary)", body: "Reading fluency, number work, environmental studies." },
   { name: "Grade 4–6 (Upper primary)", body: "Subject depth, projects and skill pathways." },
+  { name: "Grade 7–9 (Junior school)", body: "Pre-technical studies, integrated science and pathway discovery." },
 ];
+
 
 const learningAreas = [
   "Literacy & English",
