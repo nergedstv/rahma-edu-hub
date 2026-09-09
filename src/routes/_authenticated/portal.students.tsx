@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 
+import { AddStudentDialog } from "@/components/portal/add-student-dialog";
 import { EmptyState, PageHeader } from "@/components/portal/page-header";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -14,6 +15,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { useMe } from "@/hooks/use-auth";
 import { supabase } from "@/integrations/supabase/client";
 import { fullName } from "@/lib/school";
 
