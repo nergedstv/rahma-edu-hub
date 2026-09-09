@@ -19,7 +19,7 @@ export const Route = createFileRoute("/admissions")({
       {
         name: "description",
         content:
-          "Apply for a place at Rahma Junior Education Center. Simple three-step admission for Playgroup through Grade 6.",
+          "Apply for a place at Rahma Junior Education Center. Simple three-step admission from Playgroup and pre-primary through junior school Grade 9.",
       },
       { property: "og:title", content: "Admissions at Rahma Junior Education Center" },
       {
@@ -41,7 +41,11 @@ const classOptions = [
   "Grade 4",
   "Grade 5",
   "Grade 6",
+  "Grade 7",
+  "Grade 8",
+  "Grade 9",
 ];
+
 
 const steps = [
   { title: "1. Send the form", body: "Share your child's details and the class you are applying for." },
@@ -98,7 +102,7 @@ function Admissions() {
           Join the {school.shortName} family
         </h1>
         <p className="mt-5 max-w-2xl text-muted-foreground">
-          We welcome learners from Playgroup through Grade 6 throughout the year. Send the form below
+          We welcome learners from Playgroup and pre-primary through junior school (Grade 9) throughout the year. Send the form below
           and our admissions team will get in touch with the next steps.
         </p>
 

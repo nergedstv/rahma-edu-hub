@@ -49,7 +49,7 @@ const pillars = [
   {
     icon: GraduationCap,
     title: "Strong foundation",
-    body: "From playgroup through upper primary, learners build the confidence to thrive at the next level.",
+    body: "From playgroup and pre-primary through junior school (Grade 9), learners build the confidence to thrive at the next level.",
   },
 ];
 
