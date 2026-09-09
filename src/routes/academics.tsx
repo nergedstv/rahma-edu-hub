@@ -12,7 +12,7 @@ export const Route = createFileRoute("/academics")({
       {
         name: "description",
         content:
-          "Our CBC-aligned programme from playgroup to upper primary: learning areas, assessment and how progress is shared with parents.",
+          "Our CBC-aligned programme from playgroup to junior school (Grade 9): learning areas, assessment and how progress is shared with parents.",
       },
       { property: "og:title", content: "Academics & CBC — Rahma Junior" },
       {
